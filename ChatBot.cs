@@ -53,6 +53,10 @@ string input = Console.ReadLine().ToLower().Trim();
  if (input == "exit")
 {
  run = false;
+ Console.Beep(1200, 200);
+ Thread.Sleep(200);
+ Console.Beep(900, 200);
+
  TypeWriter("Goodbye! Stay safe online :)");
 }
  else
