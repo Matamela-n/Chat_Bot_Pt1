@@ -68,7 +68,10 @@ foreach (string line in logo)//loops through each line.
  Console.WriteLine();
      }
 Console.ResetColor();
- }
+Console.WriteLine("Smart Security Starts Here!");
+ Console.ForegroundColor = ConsoleColor.Red;
+  Console.ResetColor();
+        }
 }
  }
    
