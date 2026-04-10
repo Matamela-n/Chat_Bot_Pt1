@@ -46,7 +46,7 @@ private void ascii()
 "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
  };
 
-ConsoleColor[] gradient = {
+ConsoleColor[] gradient = { //this array of colours will create the gradient.
 ConsoleColor.DarkRed,
 ConsoleColor.Red,
 ConsoleColor.Yellow,
@@ -57,9 +57,9 @@ ConsoleColor.Magenta
  };
 
 int colorIndex = 0;
-foreach (string line in logo)
+foreach (string line in logo)//loops through each line.
  {
- foreach (char c in line)
+ foreach (char c in line) //this will loop through each character in the lines
  {
    Console.ForegroundColor = gradient[colorIndex % gradient.Length];
   Console.Write(c);
