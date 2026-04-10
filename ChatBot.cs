@@ -14,8 +14,8 @@ public void TypeWriter(string message)
         {
 foreach (char c in message)
 {
-Console.Write(c);
-Thread.Sleep(25);
+ Console.Write(c);
+Thread.Sleep(22);
  }
  Console.WriteLine();
         }
