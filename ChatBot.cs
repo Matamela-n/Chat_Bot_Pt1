@@ -3,11 +3,22 @@ using System.Diagnostics.Eventing.Reader;
 using System.Runtime.Remoting.Channels;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
+using System.Threading; //import this in order to use thread.sleep
 
 namespace Chat_Bot_Pt1
 {
 public class ChatBot
 {
+
+public void TypeWriter(string message)
+        {
+foreach (char c in message)
+{
+Console.Write(c);
+Thread.Sleep(40);
+ }
+ Console.WriteLine();
+        }
 
 string[] keyword = //create arrays for the keywords and responses.
          {
@@ -42,7 +53,7 @@ string input = Console.ReadLine().ToLower().Trim();
  if (input == "exit")
 {
  run = false;
-Console.WriteLine("Goodbye! Stay safe online :)");
+ TypeWriter("Goodbye! Stay safe online :)");
 }
  else
  {
@@ -61,11 +72,11 @@ string userInput = input.ToLower().Trim(); //this changes the input to lowercase
             {
 if (userInput.Contains(keyword[i]))
  {
-Console.WriteLine("Secure Lock Bot: " + response[i]); //this will display the relevant response.
+TypeWriter("Secure Lock Bot: " + response[i]); //this will display the relevant response.
    return;
  }
  }
-Console.WriteLine("I don't understand what you are asking. Can you ask again?");
+TypeWriter("I don't understand what you are asking. Can you ask again?");
 }
     }
 }

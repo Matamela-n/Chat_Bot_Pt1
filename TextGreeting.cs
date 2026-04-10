@@ -34,7 +34,7 @@ Console.ForegroundColor = ConsoleColor.Yellow; //this changes the colour
  Console.WriteLine("*         TYPE 'exit' TO QUIT THE CHATBOT.             *");
  Console.WriteLine("****************************************************");
 Console.ResetColor();
-            Console.ResetColor();          
+ Console.ResetColor();          
   }
         
  }
