@@ -15,32 +15,61 @@ namespace Chat_Bot_Pt1
 
 private void ascii()
  {
-  string path = string.Empty;
-  string fullpath = AppDomain.CurrentDomain.BaseDirectory;
-  path = fullpath.Replace(@"bin\Debug\", "logo.png");
+  string[] logo = {
+"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",
+"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",
+"::                                                                        ::",
+"::                                                                        ::",
+"::                                                                        ::",
+"::     ________  _______   ________  ___  ___  ________  _______          ::",
+"::    |\\   ____\\|\\  ___ \\ |\\   ____\\|\\  \\|\\  \\|\\   __  \\|\\  ___ \\         ::",
+"::    \\ \\  \\___|\\ \\   __/|\\ \\  \\___|\\ \\  \\\\  \\ \\  \\|\\  \\ \\   __/|        ::",
+"::     \\ \\_____  \\ \\  \\_|/_\\ \\  \\    \\ \\  \\\\  \\ \\   _  _\\ \\  \\_|/__      ::",
+"::      \\|____|\\  \\ \\  \\_|\\ \\ \\  \\____\\ \\  \\\\  \\ \\  \\\\  \\\\ \\  \\_|\\ \\     ::",
+"::        ____\\_\\  \\ \\_______\\ \\_______\\ \\_______\\ \\__\\\\ _\\\\ \\_______\\    ::",
+"::       |\\_________\\|_______|\\|_______|\\|_______|\\|__|\\|__|\\|_______|    ::",
+"::       \\|_________|                                                     ::",
+"::                                                                        ::",
+"::                                                                        ::",
+"::     ___       ________  ________  ___  __                              ::",
+"::    |\\  \\     |\\   __  \\|\\   ____\\|\\  \\|\\  \\                            ::",
+"::    \\ \\  \\    \\ \\  \\|\\  \\ \\  \\___|\\ \\  \\/  /|_                          ::",
+"::     \\ \\  \\    \\ \\  \\\\\\  \\ \\  \\    \\ \\   ___  \\                         ::",
+"::      \\ \\  \\____\\ \\  \\\\\\  \\ \\  \\____\\ \\  \\\\ \\  \\                        ::",
+"::       \\ \\_______\\ \\_______\\ \\_______\\ \\__\\\\ \\__\\                       ::",
+"::        \\|_______|\\|_______|\\|_______|\\|__| \\|__|                       ::",
+"::                                                                        ::",
+"::                                                                        ::",
+"::                                                                        ::",
+"::                                                                        ::",
+"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",
+"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+ };
 
- Bitmap image = new Bitmap(path);
+ConsoleColor[] gradient = {
+ConsoleColor.DarkRed,
+ConsoleColor.Red,
+ConsoleColor.Yellow,
+ ConsoleColor.Green,
+ConsoleColor.Cyan,
+ ConsoleColor.Blue,
+ConsoleColor.Magenta
+ };
 
- int width = 300;
- int height = 150;
- Bitmap resized = new Bitmap(image, new Size(width, height));
-Console.ForegroundColor = ConsoleColor.Red;
-
- string asciiChars = "@##SS%%??**++;;::,,.. ";
-
- for (int y = 0; y < resized.Height; y++)
-{
-for (int x = 0; x < resized.Width; x++)
-{
- Color pixel = resized.GetPixel(x, y);
-    int gray = (pixel.R + pixel.G + pixel.B) / 3;
-     int index = (gray * (asciiChars.Length - 1)) / 255;
- Console.Write(asciiChars[index]);
-
-  }
-  Console.WriteLine();
+int colorIndex = 0;
+foreach (string line in logo)
+ {
+ foreach (char c in line)
+ {
+   Console.ForegroundColor = gradient[colorIndex % gradient.Length];
+  Console.Write(c);
+ colorIndex++;
+ }
+ Console.WriteLine();
+     }
+Console.ResetColor();
  }
 }
  }
- }    
+   
 
