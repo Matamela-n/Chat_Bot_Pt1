@@ -1,16 +1,9 @@
 name: ChatBot CI
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
   build:
-    name: Build and Validate
     runs-on: windows-latest
 
     steps:
@@ -37,4 +30,3 @@ jobs:
             Write-Error "responses.yml is MISSING!"
             exit 1
           }
-        
