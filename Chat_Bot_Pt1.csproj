@@ -52,11 +52,16 @@
     <Compile Include="VoiceGreeting.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="project.yml" />
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.png" />
+    <Content Include="secure-lock.txt" />
     <Content Include="VoiceGreeting.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".github\workflows\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

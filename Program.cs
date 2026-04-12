@@ -11,7 +11,7 @@ namespace Chat_Bot_Pt1
     {
         static void Main(string[] args)
         {
-new VoiceGreeting() { };
+new VoiceGreeting() { }; //create an object for the voicegreeting class.
 
 AsciiArt logo = new AsciiArt();
  logo.DisplayLogo();
