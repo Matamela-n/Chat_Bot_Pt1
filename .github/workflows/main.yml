@@ -2,32 +2,34 @@ name: ChatBot CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
-    name: Build & Validate
-    runs-on: windows-latest  
+    name: Build and Validate
+    runs-on: windows-latest
 
     steps:
-
-           - name: Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-            - name: Setup .NET
+      - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
-            - name: Restore dependencies
+      - name: Restore dependencies
         run: dotnet restore
 
-            - name: Build
+      - name: Build
         run: dotnet build --no-restore --configuration Release
 
-           - name: Check responses.yml exists
+      - name: Check responses.yml exists
+        shell: pwsh
         run: |
           if (Test-Path "Chat_Bot_Pt1/responses.yml") {
             Write-Host "responses.yml found!"
@@ -35,4 +37,4 @@ jobs:
             Write-Error "responses.yml is MISSING!"
             exit 1
           }
-        shell: pwsh
+        
