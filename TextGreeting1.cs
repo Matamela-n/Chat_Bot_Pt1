@@ -2,7 +2,7 @@
 
 namespace Chat_Bot_Pt1
 {
- public class TextGreeting
+ public class TextGreeting1
   {
 public string AskName()
 {

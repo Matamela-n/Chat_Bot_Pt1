@@ -1,86 +1,169 @@
-﻿using System;
-using System.Diagnostics.Eventing.Reader;
-using System.Runtime.Remoting.Channels;
-using System.Security.Cryptography.X509Certificates;
-using System.Xml.Linq;
-using System.Threading; //import this in order to use thread.sleep
+﻿
+using System;
+using System.Collections.Generic;
 
-namespace Chat_Bot_Pt1
+namespace ChatBotGUI
 {
-public class ChatBot
-{
+    public class ChatBot
+    {
+        Random random = new Random();
 
-public void TypeWriter(string message)
+        string pastInterest = ""; 
+        string userName = "";
+        string rememberedTopic = "";
+        string lastTopic = "";
+
+        Dictionary<string, List<string>> responses =
+      new Dictionary<string, List<string>>()
         {
-foreach (char c in message)
-{
- Console.Write(c);
-Thread.Sleep(22);
- }
- Console.WriteLine();
-        }
+            {
+     "password",
+                new List<string>()
+                {
+     "Use strong and unique passwords for every account.",
+                    "Avoid using personal information in passwords.",
+                    "Use a mix of uppercase letters, numbers and symbols."
+                }
+            },
 
-string[] keyword = //create arrays for the keywords and responses.
-         {
-"how are you",
-"purpose",
-"topics",
-"phishing",
-"password",
-"safe browsing"
-};
+            {
+                "phishing",
+                new List<string>()
+                {
+                    "Be cautious of suspicious emails asking for personal information.",
+                    "Never click unknown links from emails or messages.",
+                    "Scammers often pretend to be trusted organisations."
+                }
+            },
 
+            {
+                "privacy",
+                new List<string>()
+                {
+                    "Review your privacy settings regularly.",
+                    "Avoid sharing sensitive information online.",
+                    "Use two-factor authentication for extra protection."
+                }
+            },
 
-string[] response =
-{
-  "I'm good",
-  "I am a Cybersecurity Awareness Bot and my purpose is to educate you about online safety",
-"You can ask me about phishing, passwords and safe browsing",
-"Beware of any unknown emails or messages that you may receive especially if they ask for your personal info. Always check if the sender id verified and legit.",
-"Ensure you use a strong and unique password!!!",
-"Use updated browsers, avoid unsafe websites and enable security features like HTTPS and ad blockers."
- };
-
- public void Start()
+            {
+                "scam",
+                new List<string>()
+                {
+                    "Online scams often create urgency to trick victims.",
+                    "Never send money to unknown people online.",
+                    "Verify websites and sellers before making payments."
+                }
+            }
+        };
+public void SaveName(string name) //method to save the user's name.
  {
-   bool run = true;
-while (run) //loop will keep the chatbot running until the user says 'exit'
-{
-Console.ForegroundColor = ConsoleColor.Cyan;
-Console.Write("\nAsk away: ");
-Console.ResetColor();
-string input = Console.ReadLine().ToLower().Trim();
- if (input == "exit")
-{
- run = false;
- Console.Beep(1200, 200);
- Thread.Sleep(200);
- Console.Beep(900, 200);
+userName = name;
+  }
 
- TypeWriter("Goodbye! Stay safe online :)");
-}
+        public string GetResponse(string input)
+        {
+            string userInput = input.ToLower();
+            //sentiment detection
+
+            if (userInput.Contains("worried"))
+            {
+                return "It's okay to feel worried about cybersecurity. Staying informed is the first step to protecting yourself online.";
+            }
+
+            if (userInput.Contains("frustrated"))
+            {
+                return "Cybersecurity can feel overwhelming sometimes, but small safety habits make a big difference.";
+            }
+
+            if (userInput.Contains("curious"))
+            {
+                return "Curiosity is great in cybersecurity. Learning more helps you stay safe online.";
+            }
+            if (userInput.Contains("worried"))
+            {
+                return "It's okay to feel worried about cybersecurity. Staying informed is the first step to protecting yourself online.";
+            }
+
+            if (userInput.Contains("frustrated"))
+            {
+                return "Cybersecurity can feel overwhelming sometimes, but small safety habits make a big difference.";
+            }
+
+            if (userInput.Contains("curious"))
+            {
+                return "Curiosity is great in cybersecurity. Learning more helps you stay safe online.";
+            }
+            // FOLLOW-UP QUESTIONS
+
+            if (userInput.Contains("tell me more") ||
+                userInput.Contains("another tip") ||
+                userInput.Contains("explain more"))
+            {
+                if (lastTopic != "")
+                {
+                    List<string> possibleResponses =
+                        responses[lastTopic];
+
+                    int index =
+                        random.Next(possibleResponses.Count);
+
+                    return "Here is another tip about " +
+                           lastTopic + ":\n\n" +
+                           possibleResponses[index];
+                }
+
+                return "Please ask about a cybersecurity topic first.";
+            }
+
+            //memory feature
+            if (userInput.Contains("interested in privacy"))
+            {
+                pastInterest = "privacy";
+
+                return "Great! I'll remember that you're interested in privacy. It's an important part of online safety.";
+            }
+
+            if (userInput.Contains("interested in phishing"))
+            {
+                pastInterest = "phishing";
+
+                return "Great! I'll remember that you're interested in phishing awareness.";
+            }
+
+//rexall feature
+if (userInput.Contains("remind me"))
+{
+if (pastInterest != "")
+{
+ return "Earlier you mentioned being interested in " + pastInterest + ". You should continue learning about it to stay cyber safe.";
+  }
  else
  {
-Response(input); //call response method to check the keyword in order to get the corresponding response.
-  }
-  }
-  }
-
-public void Response(string input) //create a method that will provide a response after user input.
- {
-
-Console.ForegroundColor = ConsoleColor.White;
-string userInput = input.ToLower().Trim(); //this changes the input to lowercase.
-
- for(int i =0; i< keyword.Length; i++) //for loop will loop through all the keywords in the array tom find a match.
-            {
-if (userInput.Contains(keyword[i]))
- {
-TypeWriter("Secure Lock Bot: " + response[i]); //this will display the relevant response.
-   return;
+return "I do not remember any interests yet.";
  }
  }
-TypeWriter("I don't understand what you are asking. Can you ask again?");
+            //keyword recognition
+
+foreach (var keyword in responses.Keys)
+{
+ if (userInput.Contains(keyword))
+  {
+  // REMEMBER CURRENT TOPIC
+   lastTopic = keyword;
+
+rememberedTopic = keyword;
+
+                    // RANDOM RESPONSE
+  List<string> possibleResponses = responses[keyword];
+
+  int index = random.Next(possibleResponses.Count);
+
+return possibleResponses[index];
+  }
 }
+
+            return "I'm not sure I understand. Can you try rephrasing?";
+        }
     }
 }

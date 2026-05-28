@@ -11,16 +11,16 @@ namespace Chat_Bot_Pt1
     {
         static void Main(string[] args)
         {
-new VoiceGreeting() { }; //create an object for the voicegreeting class.
+new VoiceGreeting1() { }; //create an object for the voicegreeting class.
 
-AsciiArt logo = new AsciiArt();
+AsciiArt2 logo = new AsciiArt2();
  logo.DisplayLogo();
 
-TextGreeting hello = new TextGreeting();
+TextGreeting1 hello = new TextGreeting1();
 string name = hello.AskName();
 hello.Display(name);
 
-ChatBot bot = new ChatBot();
+ChatBot1 bot = new ChatBot1();
  bot.Start();
 
 Console.ReadLine();

@@ -4,10 +4,10 @@ using System.Media;
 
 namespace Chat_Bot_Pt1
 {
-public class VoiceGreeting
+public class VoiceGreeting1
 {
 string path = AppDomain.CurrentDomain.BaseDirectory; //auto path.
- public VoiceGreeting() //create a constructor
+ public VoiceGreeting1() //create a constructor
   { 
 hello(); //call the method whic will play the audio
   }
