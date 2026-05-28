@@ -47,12 +47,12 @@ namespace ChatBotGUI
             },
 
             {
-                "scam",
-                new List<string>()
-                {
-                    "Online scams often create urgency to trick victims.",
-                    "Never send money to unknown people online.",
-                    "Verify websites and sellers before making payments."
+"scam",
+new List<string>()
+  {
+"Online scams often create urgency to trick victims.",
+"Never send money to unknown people online.",
+"Verify websites and sellers before making payments."
                 }
             }
         };
