@@ -2,4 +2,4 @@ LINKS
 
 Youtube link:https://youtu.be/IS3iWZRHS2Y
 
-GitHub Link: https://github.com/Matamela-n/Chat_Bot_Pt1/commit/ef5cd2b54a16113bc786bb9ed2bacf82f5365753
+GitHub Link: https://github.com/Matamela-n/Chat_Bot_Pt1
