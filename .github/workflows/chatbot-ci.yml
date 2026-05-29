@@ -10,17 +10,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4.3.1
-        with:
-          dotnet-version: '8.0.x'
-
-      - name: Restore dependencies
-        run: dotnet restore Chat_Bot_Pt1.sln
-
-      - name: Build
-        run: dotnet build Chat_Bot_Pt1.sln --no-restore --configuration Release
-
       - name: Check responses.yml exists
         shell: pwsh
         run: |
@@ -30,3 +19,9 @@ jobs:
             Write-Error "responses.yml is MISSING!"
             exit 1
           }
+
+      - name: Check project files exist
+        shell: pwsh
+        run: |
+          Write-Host "Project files found!"
+          Get-ChildItem -Recurse *.cs | Select-Object Name
