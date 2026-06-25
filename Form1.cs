@@ -22,23 +22,23 @@ namespace Secure_Lock_Chat
             bot = new ChatBot();//this will create a new instance of the chatbot.
             greeting = new TextGreeting(); //creates a new instance of the text greeting
 
-            rtbChat.SelectionAlignment = HorizontalAlignment.Left; //when tha app starts the app will display the welcome message with the following colours.
+            rtbChat.SelectionAlignment = HorizontalAlignment.Left; //when the app starts the app will display the welcome message with the following colours.
             rtbChat.SelectionBackColor = Color.FromArgb(26, 16, 53);
             rtbChat.SelectionColor = Color.FromArgb(221, 214, 254);
             rtbChat.AppendText(greeting.WelcomeMessage() + "");
 
             rtbChat.Font = new Font("Consolas", 11F, FontStyle.Regular); //this sets fonts and sizes for all the controls.
             txtMessage.Font = new Font("Consolas", 10F, FontStyle.Regular);
-            btnSend.Font = new Font("Consolas", 9F, FontStyle.Bold);
-            btnVoice.Font = new Font("Consolas", 9F, FontStyle.Bold);
-            btnClear.Font = new Font("Consolas", 9F, FontStyle.Bold);
-            btnExit.Font = new Font("Consolas", 9F, FontStyle.Bold);
+            btnSend.Font = new Font("Consolas", 9.5F, FontStyle.Bold);
+            btnVoice.Font = new Font("Consolas", 9.5F, FontStyle.Bold);
+            btnClear.Font = new Font("Consolas", 9.5F, FontStyle.Bold);
+            btnExit.Font = new Font("Consolas", 9.5F, FontStyle.Bold);
             lblTitle.Font = new Font("Consolas", 36F, FontStyle.Bold);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+//everything is handled in the constuctor therefore method is empty.
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace Secure_Lock_Chat
                 rtbChat.SelectionBackColor = Color.FromArgb(26,16,53);
                 rtbChat.SelectionColor = Color.FromArgb(221, 214, 254);
 
-                rtbChat.AppendText("Bot: " + greeting.DisplayGreeting() + "\n\n");
+                rtbChat.AppendText("Secure Lock Bot: " + greeting.DisplayGreeting() + "\n\n");
 
                 nameSaved = true;
 
