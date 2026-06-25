@@ -162,6 +162,128 @@ A Windows Forms chatbot application that educates users on cybersecurity topics 
 - TextGreeting.cs — Text greeting and speech
 - VoiceGreeting.cs — WAV audio greeting
 
+# SecureLock Chat
+
+## Overview
+SecureLock Chat is a Windows Forms chatbot that helps users manage cybersecurity tasks, take a quiz, and track activities using Natural Language Processing.
+
+## Features
+- **Part 1 & 2:** Core chatbot with voice/text greetings and purple neon GUI
+- **Part 3:** Task management with MySQL database (add, view, complete, delete tasks)
+- **Task 2:** 12-question cybersecurity quiz with immediate feedback
+- **Task 3:** NLP-based intent detection (understands flexible phrasing)
+- **Task 4:** Activity log that tracks all user actions with timestamps
+
+## Technologies
+- C# (.NET 9.0)
+- Windows Forms
+- MySQL 8.0.46
+- MySql.Data 9.7.0
+
+## Setup
+
+### Prerequisites
+- Visual Studio 2022
+- .NET 9.0
+- MySQL Server 8.0+
+- MySql.Data NuGet package
+
+### Database Setup
+```sql
+CREATE DATABASE SecureLockAssistantDB;
+USE SecureLockAssistantDB;
+CREATE TABLE Tasks (
+    TaskID INT AUTO_INCREMENT PRIMARY KEY,
+    Title VARCHAR(100) NOT NULL,
+    Description VARCHAR(500),
+    ReminderDate DATETIME NULL,
+    IsCompleted BOOLEAN DEFAULT FALSE
+);
+```
+
+### Installation
+1. Clone the repository
+2. Open `Secure_Lock_Chat.sln` in Visual Studio
+3. Install MySql.Data NuGet package
+4. Update MySQL password in `Database.cs` if needed
+5. Build solution (`Ctrl+Shift+B`)
+6. Run application (`F5`)
+
+## Usage
+
+### Commands
+```
+"add task"              → Create a new task
+"show tasks"            → Display all tasks
+"complete task [name]"  → Mark task as done
+"delete task [name]"    → Remove a task
+"quiz"                  → Start cybersecurity quiz
+"show activity log"     → View recent actions
+```
+
+### Example
+```
+User: add task
+Bot: What's the title?
+User: Enable 2FA
+Bot: Describe this task
+User: Enable on email and banking
+Bot: How many days to remind? (0 for none)
+User: 7
+Bot: ✓ Task added! Remind in 7 days.
+```
+
+## Project Structure
+- **Form1.cs** - Main GUI
+- **Task.cs** - Task model
+- **Database.cs** - MySQL connection
+- **TaskManager.cs** - Task business logic
+- **QuizQuestion.cs** - Quiz questions
+- **QuizManager.cs** - Quiz logic
+- **ActivityLog.cs** - Activity tracking
+- **NLPHelper.cs** - Intent detection
+- **ChatBot.cs** - Chatbot logic (Part 1)
+- **TextGreeting.cs** - Text greeting (Part 2)
+- **VoiceGreeting.cs** - Voice greeting (Part 2)
+
+## Key Features
+
+### Database (Part 3)
+- Full CRUD operations for tasks
+- MySQL persistence
+- Parameterized queries for security
+
+### Quiz (Task 2)
+- 12 cybersecurity questions
+- Multiple-choice and true/false
+- Immediate feedback with explanations
+- Performance-based scoring
+
+### NLP (Task 3)
+- Keyword-based intent detection
+- Supports flexible phrasing
+- Recognizes variations: "add task", "create task", "new task"
+
+### Activity Log (Task 4)
+- Tracks tasks, quiz, and system events
+- Timestamped entries (HH:MM:SS)
+- Shows last 10 actions
+
+## Testing
+- Application launches ✅
+- Database connects ✅
+- Tasks save to database ✅
+- Quiz displays all questions ✅
+- NLP recognizes commands ✅
+- Activity log tracks actions ✅
+
+## Author
+Matamela Nesidoni
+
+## Date
+June 2026
+
+
 ## Author
 Matamela Nesidoni
 Student Number: ST10483305
