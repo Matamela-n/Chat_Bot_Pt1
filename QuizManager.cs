@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Secure_Lock_Chat
 {
-    public class QuizManager
+    public class QuizManager //this class manages the entire functionality of the quiz.
     {
-        private List<QuizQuestion> questions;
-        private int currentQuestionIndex;
-        private int score;
+        private List<QuizQuestion> questions; //lists all the 12 questions.
+        private int currentQuestionIndex;//this tracks which question the user is on.
+        private int score;//this shows the total number of questions answered.
         private int totalQuestions;
-        public bool IsQuizActive { get; private set; }
-        public QuizManager()
+        public bool IsQuizActive { get; private set; }//this flags whether the quiz is currently running.
+        public QuizManager()//a constructor which initialises the quiz manager and loads all questions.
         {
             questions = new List<QuizQuestion>();
             currentQuestionIndex = 0;
@@ -23,7 +23,7 @@ namespace Secure_Lock_Chat
             InitializeQuestions();
             totalQuestions = questions.Count;
         }
-        private void InitializeQuestions()
+        private void InitializeQuestions() //this method intialises the quiz manager and loads all  questions.
         {
             questions.Add(new QuizQuestion(1, "What should you do if you receive an email asking for your password?", new List<string> { "Reply with your password", "Delete the email", "Report it as phishing" }, 2, "Never share passwords via email. Always report suspicious emails as phishing.", "Phishing"));
             questions.Add(new QuizQuestion(2, "Which is a strong password?", new List<string> { "password123", "MyP@ssw0rd!", "admin" }, 1, "Strong passwords contain uppercase, lowercase, numbers, and special characters.", "Password Safety"));
@@ -38,15 +38,15 @@ namespace Secure_Lock_Chat
             questions.Add(new QuizQuestion(11, "True or False: Antivirus software makes you completely immune to all cyber threats.", new List<string> { "True", "False" }, 1, "Antivirus helps but isn't 100% foolproof. Use it with other security practices.", "Malware Protection"));
             questions.Add(new QuizQuestion(12, "What does VPN stand for?", new List<string> { "Virtual Private Network", "Very Private Navigation", "Vital Personal Network" }, 0, "A VPN encrypts your internet connection and masks your IP address.", "Safe Browsing"));
         }
-        public void StartQuiz()
+        public void StartQuiz() //method strats a new quiz by resetting score and question index.
         {
-            IsQuizActive = true;
-            currentQuestionIndex = 0;
-            score = 0;
+            IsQuizActive = true; //mark quiz as active.
+            currentQuestionIndex = 0;//this starts at question 1 which starts at index 0
+            score = 0;//resets score
         }
-        public QuizQuestion? GetCurrentQuestion()
+        public QuizQuestion? GetCurrentQuestion() //this checks if the user's response is correct and updates it
         {
-            if (currentQuestionIndex < questions.Count)
+            if (currentQuestionIndex < questions.Count) //checks if answer is correct
             {
                 return questions[currentQuestionIndex];
             }
@@ -67,11 +67,11 @@ namespace Secure_Lock_Chat
             {
                 result = "✗ Incorrect. ";
             }
-            result += $"Explanation: {currentQuestion.Explanation}";
-            currentQuestionIndex++;
+            result += $"Explanation: {currentQuestion.Explanation}"; //this now shows the correct answer with an explaination
+            currentQuestionIndex++;//moves on to the next question.
             return result;
         }
-        public bool HasNextQuestion()
+        public bool HasNextQuestion()//this is the method which ends the quiz and calculates the user's final score.
         {
             return currentQuestionIndex < questions.Count;
         }
@@ -81,9 +81,9 @@ namespace Secure_Lock_Chat
             string feedback = "";
             int percentage = (score * 100) / totalQuestions;
             feedback += $"\n╔══════════════════════════════════════╗\n";
-            feedback += $"║  QUIZ COMPLETE!                      ║\n";
-            feedback += $"╚══════════════════════════════════════╝\n";
-            feedback += $"Your Score: {score}/{totalQuestions} ({percentage}%)\n\n";
+            feedback += $"  ║          QUIZ COMPLETE!              ║\n";
+            feedback += $"  ╚══════════════════════════════════════╝\n";
+            feedback += $"Your Score: {score}/{totalQuestions} ({percentage}%)\n\n"; //this gives feedback according to score.
             if (percentage >= 90)
                 feedback += "🏆 Excellent! You're a cybersecurity pro!";
             else if (percentage >= 70)
@@ -94,7 +94,7 @@ namespace Secure_Lock_Chat
                 feedback += "Keep studying cybersecurity concepts. You'll improve!";
             return feedback;
         }
-        public int GetCurrentScore()
+        public int GetCurrentScore() //method shows the user their final score
         {
             return score;
         }
@@ -106,5 +106,5 @@ namespace Secure_Lock_Chat
         {
             return currentQuestionIndex + 1;
         }
-    }
-}
+    }//end of class
+}//end of namespace

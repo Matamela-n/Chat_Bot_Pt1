@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace Secure_Lock_Chat
 {
-    public class NLPHelper
+    public class NLPHelper//this provids NPL to detect what the user wants to do.
     {
         private List<string> taskKeywords = new List<string> { "task", "todo", "add", "create", "set", "reminder", "remind" };
         private List<string> quizKeywords = new List<string> { "quiz", "trivia", "test", "question", "exam", "challenge" };
@@ -10,12 +10,12 @@ namespace Secure_Lock_Chat
         private List<string> completeKeywords = new List<string> { "complete", "done", "finish", "mark complete", "finished" };
         private List<string> deleteKeywords = new List<string> { "delete", "remove", "remove task", "clear" };
         private List<string> showKeywords = new List<string> { "show", "display", "list", "view", "see" };
-        public string DetectIntent(string userInput)
+        public string DetectIntent(string userInput)//detects the user's intent by looking for keywords in their answer.
         {
             string input = userInput.ToLower();
             if (ContainsKeywords(input, taskKeywords) && ContainsKeywords(input, new List<string> { "task", "reminder", "add", "create", "set" }))
                 return "TASK";
-            if (ContainsKeywords(input, quizKeywords))
+            if (ContainsKeywords(input, quizKeywords))//this checks for keyword and if it matches.
                 return "QUIZ";
             if (ContainsKeywords(input, activityKeywords))
                 return "ACTIVITY_LOG";
@@ -27,11 +27,11 @@ namespace Secure_Lock_Chat
                 return "SHOW_TASKS";
             return "GENERAL_CHAT";
         }
-        public string ExtractTaskTitle(string userInput)
+        public string ExtractTaskTitle(string userInput)//this extracts task titlr from user.
         {
             string input = userInput.ToLower();
             string[] taskIndicators = { "add task", "create task", "new task", "task:", "task -" };
-            foreach (var indicator in taskIndicators)
+            foreach (var indicator in taskIndicators) //finds a task indicator and extracts a text after it.
             {
                 if (input.Contains(indicator))
                 {
@@ -43,7 +43,7 @@ namespace Secure_Lock_Chat
             }
             return userInput;
         }
-        public string ExtractReminderDays(string userInput)
+        public string ExtractReminderDays(string userInput)//this method is used to get the reminder duration from the user
         {
             string input = userInput.ToLower();
             if (input.Contains("tomorrow"))
@@ -109,5 +109,5 @@ namespace Secure_Lock_Chat
                 return "Let me show you what we've accomplished together.";
             return "";
         }
-    }
-}
+    }//end of nlp class
+}//end of namespace 

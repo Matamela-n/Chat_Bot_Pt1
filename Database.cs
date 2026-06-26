@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 namespace Secure_Lock_Chat
 {
-    public class Database
+    public class Database//this class handles the SQL database operations.
     {
-        private string connectionString = "Server=localhost;Database=SecureLockAssistantDB;Uid=root;Pwd=Matamela22.;";
-        public Database(string password = "")
+        private string connectionString = "Server=localhost;Database=SecureLockAssistantDB;Uid=root;Pwd=Matamela22.;";//connection string mysql
+        public Database(string password = "")//create a constructor which accepts a custom mysql password
         {
             if (!string.IsNullOrEmpty(password))
             {
                 connectionString = $"Server=localhost;Database=SecureLockAssistantDB;Uid=root;Pwd={password};";
             }
         }
-        public bool TestConnection()
+        public bool TestConnection()//create a method which tests connection to mysql to verify if its working
         {
             try
             {
@@ -30,7 +30,7 @@ namespace Secure_Lock_Chat
                 return false;
             }
         }
-        public bool AddTask(Task task)
+        public bool AddTask(Task task)//method creates a task in databse
         {
             try
             {
@@ -57,7 +57,7 @@ namespace Secure_Lock_Chat
         }
         public List<Task> GetAllTasks()
         {
-            List<Task> tasks = new List<Task>();
+            List<Task> tasks = new List<Task>();//retreives all tasks in db.
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -90,7 +90,7 @@ namespace Secure_Lock_Chat
             }
             return tasks;
         }
-        public bool CompleteTask(int taskID)
+        public bool CompleteTask(int taskID)//this marks a specific task as completed.
         {
             try
             {
@@ -112,7 +112,7 @@ namespace Secure_Lock_Chat
                 return false;
             }
         }
-        public bool DeleteTask(int taskID)
+        public bool DeleteTask(int taskID)//method deletes a specific task.
         {
             try
             {
@@ -134,7 +134,7 @@ namespace Secure_Lock_Chat
                 return false;
             }
         }
-        public bool UpdateTask(Task task)
+        public bool UpdateTask(Task task)//this updates an existing task in database.
         {
             try
             {
